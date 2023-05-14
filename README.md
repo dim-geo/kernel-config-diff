@@ -1,18 +1,28 @@
 # kernel-config-diff
-Diff kernel configs but keep the structure for easier comparison
+Diff kernel configs, but keep the config tree structure for easier comparison
 
 When kernel configs are diffed it's hard to view the tree structure of kenrel config.
 /scripts/diffconfig from kernel does not preserve tree structure as well.
 
 This tool aims to alleviate that:
  2 kernels configs are parsed and CONFIG_ vairables are stored in a tree (https://anytree.readthedocs.io/en/latest/) structure based on # comments that do not have CONFIG_.
+ 
  Then CONFIG_ that have the same common value are removed from both trees.
- Finally, pruned trees are saved in txt files for easier diff-ing with GUI tools like meld. This will help you easily spot the differences and the place of xconfig, menuconfig that you can change them.
+ 
+ Finally, pruned trees are saved in txt files for easier diff-ing with GUI tools like meld.
+ 
+ This will help you spot the differences and the position of CONFIG_ attribute within xconfig or menuconfig so that you can change them easily.
+
+![Screenshot](https://github.com/dim-geo/kernel-config-diff/assets/5956557/dd3dae59-8a18-41c1-b928-7a71b9c252c6)
+
+
 
  Usage:
  `kernel-config-diff.py oldconfig newconfig oldtree.txt newtree.txt`
  
- Sample output of a tree:
+ Meld text filter to ingore leading spaces/tree characters: `^[ \t\r\f\v\|\-\+]*`
+ 
+ Sample output of a txt tree:
  
  ```
  ./current_config
